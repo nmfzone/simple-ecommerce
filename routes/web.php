@@ -20,3 +20,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::namespace('Backoffice')
+    ->prefix('/backoffice')
+    ->name('backoffice.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/products', 'ProductsController@index')
+            ->name('products.list');
+        Route::get('/products/create', 'ProductsController@create')
+            ->name('products.create');
+        Route::post('/products/create', 'ProductsController@store')
+            ->name('products.store');
+    });
+
+
+
+
+
+
+
+
+
+
+
